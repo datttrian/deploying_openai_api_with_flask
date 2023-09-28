@@ -7,6 +7,25 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+click = ">=7.0"
+flask = "==2.3.3"
+werkzeug = "==2.3.7"
+flask-sqlalchemy = "==3.1.1"
+psycopg2-binary = "==2.9.7"
+sqlalchemy = "==2.0.21"
+flask-migrate = "==4.0.5"
+email-validator = "==2.0.0.post2"
+flask-wtf = "==1.1.1"
+wtforms = "==3.0.1"
+gevent = "==23.9.1"
+gunicorn = ">=19.9.0"
+supervisor = "==4.2.5"
+flask-static-digest = "==0.4.0"
+flask-bcrypt = "==1.0.1"
+flask-login = "==0.6.2"
+flask-caching = ">=2.0.2"
+flask-debugtoolbar = "==0.13.1"
+environs = "==9.5.0"
 
 
 [build-system]
