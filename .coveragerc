@@ -1,0 +1,6 @@
+[run]
+source = deploying_openai_api_with_flask
+omit = 
+    tests/*
+    autoapp.py
+
