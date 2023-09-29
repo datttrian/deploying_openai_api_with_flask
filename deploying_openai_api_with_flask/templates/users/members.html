@@ -1,9 +1,37 @@
-
 {% extends "layout.html" %}
-{% block content %}
-    <div class="container">
-        <h1>Welcome {{ current_user.username }}</h1>
-        <h3>This is the members-only page.</h3>
-    </div>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='members.css') }}" {% endblock %} 
+{% block
+    content %} <!-- Table of Contents -->
+<div class="container">
+    <section class="full-screen-section chatgpt" style="background-color: #f0f0f0;" id="dynamic-section">
+        <div class="hero-desc">
+            <div class="title">
+                <h2>
+                    GPT <span class="hike-span">AI Assistance</span>
+                </h2>
+            </div>
+            <p>
+                GPT-4 is OpenAI’s most advanced system, producing safer and more useful responses.
+            </p>
+            </p>
+            <table>
+                <tr>
+                    <th>Input</th>
+                    <th>Output</th>
+                </tr>
+                <tr>
+                    <td>Andrew is free from 11 am to 3 pm, Joanne is free from noon to 2 pm and then 3:30 pm to 5 pm.
+                        Hannah is available at noon for half an hour, and then 4 pm to 6 pm. What are some options for
+                        start times for a 30-minute meeting for Andrew, Hannah, and Joanne?</td>
+                    <td>
+                        Andrew: 11 am - 3 pm<br>
+                        Joanne: 12 pm - 2 pm, 3:30 pm - 5 pm<br>
+                        Hannah: 12 pm - 12:30 pm, 4 pm - 6 pm<br><br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div>
 {% endblock %}
-

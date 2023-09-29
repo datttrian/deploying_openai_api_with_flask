@@ -1,0 +1,40 @@
+.full-screen-section {
+    height: 47.5vh;
+    /* Set the initial height to 95vh */
+    overflow: hidden;
+    /* Optional: Hide overflow if needed */
+    transition: height 0.3s;
+    /* Add a smooth transition effect */
+}
+
+.hero-desc {
+    padding: 4rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+th,
+td {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    vertical-align: top;
+    /* Align text to the top */
+}
+
+
+
+td img {
+    width: 100px;
+    /* Set a fixed width for the images */
+    height: auto;
+    /* Allow the height to adjust proportionally */
+    display: block;
+    /* Prevent images from affecting line height */
+    margin-bottom: 10px;
+    /* Add spacing between images */
+}
