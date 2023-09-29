@@ -37,6 +37,18 @@ def get_gpt(incoming_msg):
         return ""
 
 
+def get_dalle(incoming_msg):
+    try:
+        response = openai.Image.create(
+            prompt=incoming_msg, n=1, size="512x512"
+        )
+        content = response['data'][0]['url']
+        return content
+    except openai.error.RateLimitError as e:
+        print(e)
+        return ""
+
+
 @blueprint.route("/")
 @login_required
 def members():
