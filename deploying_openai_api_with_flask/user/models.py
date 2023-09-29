@@ -5,7 +5,13 @@ import datetime as dt
 from flask_login import UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from deploying_openai_api_with_flask.database import Column, PkModel, db, reference_col, relationship
+from deploying_openai_api_with_flask.database import (
+    Column,
+    PkModel,
+    db,
+    reference_col,
+    relationship,
+)
 from deploying_openai_api_with_flask.extensions import bcrypt
 
 
