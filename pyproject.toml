@@ -11,7 +11,7 @@ click = ">=7.0"
 flask = "==2.3.3"
 werkzeug = "==2.3.7"
 flask-sqlalchemy = "==3.1.1"
-psycopg2-binary = "==2.9.7"
+psycopg2-binary = "==2.9.8"
 sqlalchemy = "==2.0.21"
 flask-migrate = "==4.0.5"
 email-validator = "==2.0.0.post2"
@@ -26,6 +26,7 @@ flask-login = "==0.6.2"
 flask-caching = ">=2.0.2"
 flask-debugtoolbar = "==0.13.1"
 environs = "==9.5.0"
+openai = "^0.28.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -45,3 +46,7 @@ pep8-naming = "0.13.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+skip_glob = ["migrations/*"]
