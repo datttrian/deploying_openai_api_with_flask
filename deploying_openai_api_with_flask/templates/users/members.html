@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='members.css') }}" {% endblock %} 
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='members.css') }}"
+{% endblock %} 
 {% block
     content %} <!-- Table of Contents -->
 <div class="container">
@@ -14,6 +15,7 @@
             <p>
                 GPT-4 is OpenAI’s most advanced system, producing safer and more useful responses.
             </p>
+            <p><a class="btn btn-outline-secondary" href="{{ url_for('user.chatgpt') }}">Try GPT</a>
             </p>
             <table>
                 <tr>

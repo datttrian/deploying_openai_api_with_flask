@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chatgpt.css') }}" {% endblock %}
+{% block content %}
+<div class="container" style="color: white;">
+    <header class="msger-header">
+        <div class="msger-header-title">
+            <i>🤖 Powered by gpt3.5-turbo🤖</i>
+        </div>
+    </header>
+
+    <main class="msger-chat">
+        <div class="msg left-msg">
+            <div class="msg-img" style="background-image: url(https://img.icons8.com/dotty/160/futurama-bender.png)">
+            </div>
+
+            <div class="msg-bubble">
+                <div class="msg-info">
+                    <div class="msg-info-name">GPT3.5 Turbo</div>
+                    <div class="msg-info-time"></div>
+                </div>
+
+                <div class="msg-text">
+                    Hi, welcome to chatGPT3.5 TURBO! Say something crazy. 😄
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <form class="msger-inputarea">
+        <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+        <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    const msgerForm = get(".msger-inputarea");
+    const msgerInput = get(".msger-input");
+    const msgerChat = get(".msger-chat");
+
+    // Icons made by Freepik from www.flaticon.com
+    const BOT_IMG = "https://img.icons8.com/dotty/160/futurama-bender.png";
+    const PERSON_IMG = "https://img.icons8.com/ios-filled/512/guest-male.png";
+    const BOT_NAME = "ChatGPT";
+    const PERSON_NAME = "You";
+
+    msgerForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const msgText = msgerInput.value;
+        if (!msgText) return;
+
+        appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+        msgerInput.value = "";
+        botResponse(msgText);
+    });
+
+    function appendMessage(name, img, side, text) {
+        //   Simple solution for small apps
+        const msgHTML = `
+    <div class="msg ${side}-msg">
+        <div class="msg-img" style="background-image: url(${img})"></div>
+
+        <div class="msg-bubble">
+            <div class="msg-info">
+                <div class="msg-info-name">${name}</div>
+                <div class="msg-info-time">${formatDate(new Date())}</div>
+            </div>
+
+            <div class="msg-text">${text}</div>
+            <button class="copy-button" onclick="copyToClipboard(this)">Copy</button>
+        </div>
+    </div>
+    `;
+
+        msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+        msgerChat.scrollTop += 500;
+    }
+
+    function copyToClipboard(button) {
+        const textToCopy = button.previousElementSibling.textContent; // Get the text to copy
+        const textArea = document.createElement("textarea"); // Create a temporary textarea element
+        textArea.value = textToCopy; // Set the textarea's value to the text you want to copy
+        document.body.appendChild(textArea); // Append the textarea to the document
+
+        // Select and copy the text inside the textarea
+        textArea.select();
+        document.execCommand("copy");
+
+        // Clean up and remove the temporary textarea
+        document.body.removeChild(textArea);
+
+        // Optionally, provide some visual feedback to the user
+        button.textContent = "Copied!";
+        setTimeout(() => {
+            button.textContent = "Copy";
+        }, 2000); // Reset the button text after 2 seconds
+    }
+
+
+    function botResponse(rawText) {
+
+        // Bot Response
+        $.get("/users/gpt_endpoint", { msg: rawText }).done(function (data) {
+            console.log(rawText);
+            console.log(data);
+            const msgText = data;
+            appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+        });
+
+    }
+
+    // Utils
+    function get(selector, root = document) {
+        return root.querySelector(selector);
+    }
+
+    function formatDate(date) {
+        const h = "0" + date.getHours();
+        const m = "0" + date.getMinutes();
+
+        return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+</script>
+
+{% endblock %}
