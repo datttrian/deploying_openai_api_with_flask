@@ -27,7 +27,7 @@ jobs:
       - run: cp .env.example .env
       - name: Run Node lints
         run: npm run lint
-      # - name: Run Python lints
-      #   run: poetry run flask lint --check
+      - name: Run Python lints
+        run: poetry run flask lint --check
       - name: Run Python tests
         run: poetry run flask test
